@@ -1,0 +1,23 @@
+class Solution:
+    def reorderList(self, head):
+        if not head or not head.next:
+            return
+
+        nodes = []
+        current = head
+        while current:
+            nodes.append(current)
+            current = current.next
+
+        left, right = 0, len(nodes) - 1
+
+        while left < right:
+            nodes[left].next = nodes[right]
+            left += 1
+            if left == right:
+                break
+
+            nodes[right].next = nodes[left]
+            right -= 1
+
+        nodes[left].next = None
